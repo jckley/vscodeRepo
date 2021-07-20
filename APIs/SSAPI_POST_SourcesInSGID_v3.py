@@ -29,6 +29,8 @@ responseDescription = ''
 sourceTitle = ''
 sourceUri = ''
 
+# METHODS
+
 
 def getAccessToken(authClient, authUser, authURL):
     authData1 = {}
