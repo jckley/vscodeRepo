@@ -1,13 +1,16 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		},
-		{
-			"path": "../../../Library/Mobile Documents/com~apple~CloudDocs/VSCodePython"
-		}
-	],
-	"settings": {
-		"files.autoSave": "onFocusChange"
-	}
+  "folders": [
+    {
+      "path": ".."
+    },
+    {
+      "path": "../../../Library/Mobile Documents/com~apple~CloudDocs/VSCodePython"
+    },
+    {
+      "path": "../../../Library/Mobile Documents/com~apple~CloudDocs/VSCodeHTML_CSS_JS"
+    }
+  ],
+  "settings": {
+    "files.autoSave": "onFocusChange"
+  }
 }
