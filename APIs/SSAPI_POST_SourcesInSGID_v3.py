@@ -1,5 +1,6 @@
 # PYTHON para cargar Twitter Sources en un Source group via SS API
 # VERSION ESTABLE 3
+# python SSAPI_POST_SourcesInSGID_v3.py
 
 import csv
 import time
@@ -100,75 +101,81 @@ def addLogRow(log_File, log_FieldNames, row_Count, status_Code, response_Descrip
         log_Object.close()
 
 
-# ----------CREATE LOG FILE AND COLUMN HEADERS-------------
-openLogCSV(logFile, logFieldNames)
+def main():
+    rowCount = 0
+    # ----------CREATE LOG FILE AND COLUMN HEADERS-------------
+    openLogCSV(logFile, logFieldNames)
 
-# ----------GET ACCESS TOKEN-------------
-load, key, refreshToken = getAccessToken(clientInfo, userInfo, auth_URL)
+    # ----------GET ACCESS TOKEN-------------
+    load, key, refreshToken = getAccessToken(clientInfo, userInfo, auth_URL)
 
-# ----------Start Timer and Init Job Local Time-------------
-startTimer = time.time()
-localInitTime = startTimer
-print(time.ctime(localInitTime))
+    # ----------Start Timer and Init Job Local Time-------------
+    startTimer = time.time()
+    localInitTime = startTimer
+    print(time.ctime(localInitTime))
 
-# ----------DECLARE VARIABLES FOR REQUEST HEADER AND URL-------------
-url2 = 'https://api.socialstudio.radian6.com/v3/sourceFilters/' + \
-    str(sourceGroudId)+'/sourceFilterQueries'
+    # ----------DECLARE VARIABLES FOR REQUEST HEADER AND URL-------------
+    url2 = 'https://api.socialstudio.radian6.com/v3/sourceFilters/' + \
+        str(sourceGroudId)+'/sourceFilterQueries'
 
-# ---------GET REQUIRED DATA FROM CSV --------------------------------
-# CSV must have 2 cloumns with headers "title" and "uri"
-#infileName = sys.argv[1]
-infileName = 'UCR_PBA_Twitter_SG_4K_SGID'
-input_file = '/Users/juancarloskleylein/Library/Mobile Documents/com~apple~CloudDocs/VSCodePython/CSV_JSON_IN/' + \
-    infileName+".csv"  # name of csv file without the .csv
+    # ---------GET REQUIRED DATA FROM CSV --------------------------------
+    # CSV must have 2 cloumns with headers "title" and "uri"
+    #infileName = sys.argv[1]
+    infileName = 'UCR_PBA_Twitter_SG_40'
+    input_file = '/Users/juancarloskleylein/Library/Mobile Documents/com~apple~CloudDocs/VSCodePython/CSV_JSON_IN/' + \
+        infileName+".csv"  # name of csv file without the .csv
 
-# ----------Uso Pandas para convertir el CSV en un PANDAS DATAFRAME < class 'pandas.core.frame.DataFrame' >
-df_csv = pd.read_csv(input_file)
-df_rowsNumber = len(df_csv.index)
-print("Number of Rows = ", df_rowsNumber)
-pprint.pprint(df_csv.head(10))
+    # ----------Uso Pandas para convertir el CSV en un PANDAS DATAFRAME < class 'pandas.core.frame.DataFrame' >
+    df_csv = pd.read_csv(input_file)
+    df_rowsNumber = len(df_csv.index)
+    print("Number of Rows = ", df_rowsNumber)
+    pprint.pprint(df_csv.head(10))
 
-
-# ---------EXECUTE POST df_rowsNumber TIMES--------------------------------
-while rowCount < df_rowsNumber:
-    sourceTitle = df_csv.at[rowCount, 'title']
-    sourceUri = df_csv.at[rowCount, 'uri']
-    # converts Python DICT to JSON object for the request
-    payLoad = json.dumps({"title": sourceTitle, "uri": sourceUri})
-    print(payLoad)
-# --------- EXECUTE REQUEST WITH ERROR HANDLING----------------------------
-    try:
-        headers = {"access_token": key,
-                   "Content-Type": 'application/json', "charset'": 'utf-8'}
-        print("Access Token = ", key)
-        resp = requests.post(url2, headers=headers, data=payLoad, timeout=100)
-        resp.raise_for_status()
-        responseStatusCode = resp.status_code
-        responseDescription = resp.text
-        addLogRow(logFile, logFieldNames, rowCount, responseStatusCode,
-                  responseDescription, sourceTitle, sourceUri)
-        rowCount += 1
-    except requests.exceptions.RequestException as err:  # catches any EXCEPTION
-        responseStatusCode = err.response.status_code
-        responseDescription = err.response.text
-        if responseStatusCode != 401:
-            localEndTime = time.time()
-            endInfo(rowCount, refreshCounter, sourceGroudId,
-                    localInitTime, localEndTime, key, refreshToken)
-            raise SystemExit(err)
-        else:
+    # ---------EXECUTE POST df_rowsNumber TIMES--------------------------------
+    while rowCount < df_rowsNumber:
+        sourceTitle = df_csv.at[rowCount, 'title']
+        sourceUri = df_csv.at[rowCount, 'uri']
+        # converts Python DICT to JSON object for the request
+        payLoad = json.dumps({"title": sourceTitle, "uri": sourceUri})
+        print(payLoad)
+    # --------- EXECUTE REQUEST WITH ERROR HANDLING----------------------------
+        try:
+            headers = {"access_token": key,
+                       "Content-Type": 'application/json', "charset'": 'utf-8'}
+            print("Access Token = ", key)
+            resp = requests.post(url2, headers=headers,
+                                 data=payLoad, timeout=100)
+            resp.raise_for_status()
+            responseStatusCode = resp.status_code
+            responseDescription = resp.text
             addLogRow(logFile, logFieldNames, rowCount, responseStatusCode,
                       responseDescription, sourceTitle, sourceUri)
-            print("------------------------------------------------------")
-            print("ERROR Status Code = ", responseStatusCode)
-            print("ERROR Body = ", responseDescription)
-            print("Number Of ROWS executed = ", rowCount)
-            print("------------------------------------------------------")
-            load, key, refreshToken, refreshCounter = refreshAccessToken(
-                clientInfo, refreshToken, auth_URL, refreshCounter)
-    # time.sleep(100)
-else:
-    localEndTime = time.time()
-    print("---------------------------Success End!------------------------------")
-    endInfo(rowCount, refreshCounter, sourceGroudId,
-            localInitTime, localEndTime, key, refreshToken)
+            rowCount += 1
+        except requests.exceptions.RequestException as err:  # catches any EXCEPTION
+            responseStatusCode = err.response.status_code
+            responseDescription = err.response.text
+            if responseStatusCode != 401:
+                localEndTime = time.time()
+                endInfo(rowCount, refreshCounter, sourceGroudId,
+                        localInitTime, localEndTime, key, refreshToken)
+                raise SystemExit(err)
+            else:
+                addLogRow(logFile, logFieldNames, rowCount, responseStatusCode,
+                          responseDescription, sourceTitle, sourceUri)
+                print("------------------------------------------------------")
+                print("ERROR Status Code = ", responseStatusCode)
+                print("ERROR Body = ", responseDescription)
+                print("Number Of ROWS executed = ", rowCount)
+                print("------------------------------------------------------")
+                load, key, refreshToken, refreshCounter = refreshAccessToken(
+                    clientInfo, refreshToken, auth_URL, refreshCounter)
+        # time.sleep(100)
+    else:
+        localEndTime = time.time()
+        print("---------------------------Success End!------------------------------")
+        endInfo(rowCount, refreshCounter, sourceGroudId,
+                localInitTime, localEndTime, key, refreshToken)
+
+
+if __name__ == '__main__':
+    main()
