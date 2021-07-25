@@ -103,6 +103,7 @@ def addLogRow(log_File, log_FieldNames, row_Count, status_Code, response_Descrip
 
 def main():
     rowCount = 0
+    refreshCounter = 0
     # ----------CREATE LOG FILE AND COLUMN HEADERS-------------
     openLogCSV(logFile, logFieldNames)
 
