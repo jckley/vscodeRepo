@@ -18,7 +18,7 @@ userInfo = {'username': 'SysAdmin.MC@prosumia.la',
             'password': '!)12)!98QWEazsx'}
 
 auth_URL = 'https://api.socialstudio.radian6.com/oauth/token'
-sourceGroudId = 182328
+sourceGroudId = 182588
 now = datetime.now()
 logFile = Path.cwd() / 'API_Logs' / ('LOG_'+str(sourceGroudId) +
                                      '_'+now.strftime('%d%m%Y_%H_%M_%S')+'.csv')
