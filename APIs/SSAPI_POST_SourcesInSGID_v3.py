@@ -11,24 +11,6 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-clientInfo = {'client_id': 'mcxxf5f12fb3f8be492aaf5aa85b12931173',
-              'client_secret': '5c2842f0a1f8461bac670b72882fe916'}
-
-userInfo = {'username': 'SysAdmin.MC@prosumia.la',
-            'password': '!)12)!98QWEazsx'}
-
-auth_URL = 'https://api.socialstudio.radian6.com/oauth/token'
-sourceGroudId = 182588
-now = datetime.now()
-logFile = Path.cwd() / 'API_Logs' / ('LOG_'+str(sourceGroudId) +
-                                     '_'+now.strftime('%d%m%Y_%H_%M_%S')+'.csv')
-logFieldNames = ["row", "statusCode", "ReqResponseDescription", "title", "uri"]
-rowCount = 0
-refreshCounter = 0
-responseStatusCode = 0
-responseDescription = ''
-sourceTitle = ''
-sourceUri = ''
 
 # METHODS
 
@@ -102,8 +84,24 @@ def addLogRow(log_File, log_FieldNames, row_Count, status_Code, response_Descrip
 
 
 def main():
+    clientInfo = {'client_id': 'mcxxf5f12fb3f8be492aaf5aa85b12931173',
+                  'client_secret': '5c2842f0a1f8461bac670b72882fe916'}
+    userInfo = {'username': 'SysAdmin.MC@prosumia.la',
+                'password': '!)12)!98QWEazsx'}
+
+    auth_URL = 'https://api.socialstudio.radian6.com/oauth/token'
+    sourceGroudId = 182588
+    now = datetime.now()
+    logFile = Path.cwd() / 'API_Logs' / ('LOG_'+str(sourceGroudId) +
+                                         '_'+now.strftime('%d%m%Y_%H_%M_%S')+'.csv')
+    logFieldNames = ["row", "statusCode",
+                     "ReqResponseDescription", "title", "uri"]
     rowCount = 0
     refreshCounter = 0
+    responseStatusCode = 0
+    responseDescription = ''
+    sourceTitle = ''
+    sourceUri = ''
     # ----------CREATE LOG FILE AND COLUMN HEADERS-------------
     openLogCSV(logFile, logFieldNames)
 
