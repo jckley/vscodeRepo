@@ -1,0 +1,13 @@
+CMD + arrow up   - go top of the file
+CMD + arrow down - go bottom
+CMD + arrow left - go to beginning of line
+CMD + arrow right - go to end of line
+OPTION arrow left or roight - navigate word by word
+BEWARE - OPTION ARROW UP or DOWN moves line up or down
+CMD + F = Find 
+CMD + N = New File
+To search for a key combination " key1 key2..." in Keyboard Shortcuts
+EMMET 
+CMD+SHIFT+V = HTML preview
+git config --global --list in TERMINAL lists configuration of your Git Repo
+git reset --hard HEAD~1  = Deshacer el último commit (no publicado) y vas retrotrayendo tu Repo de a un commit
