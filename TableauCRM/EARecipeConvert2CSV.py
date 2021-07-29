@@ -29,9 +29,13 @@ count = 0
 
 out_file = 'OUT_'+str(in_file)+'.csv'
 
+# input_json = Path.cwd() / 'csv_in' / in_json  # input CSVs en el directoriocorriente/csv_in
 
-input_json = Path.cwd() / 'csv_in' / in_json
-output_file = Path.cwd() / 'csv_out' / out_file
+# input CSVs en el downloads/AWS_CSV/csv_in
+input_json = '/Users/juancarloskleylein/Downloads/AWS_CSV/' + in_json
+print(input_json)
+# output_file = Path.cwd() / 'csv_out' / out_file
+output_file = '/Users/juancarloskleylein/Downloads/AWS_CSV/' +  out_file
 
 
 # print(output_file)
@@ -66,7 +70,8 @@ with open(input_json) as json_file:
 # y los copia en el archivo de salida
 for x in range(1, in_nrocsvs+1):
     aux = str(in_file)+'_'+str(x)+'.csv'
-    input_file = Path.cwd() / 'csv_in' / aux
+    #input_file = Path.cwd() / 'csv_in' / aux   #toma los input CSV de currentDirectory/csv_in
+    input_file ='/Users/juancarloskleylein/Downloads/AWS_CSV/' + aux  #toma los input CSV de Downloads/AWS_CSV/
     print(input_file)
     with open(input_file) as inputcsv:
         line = inputcsv.readline()
