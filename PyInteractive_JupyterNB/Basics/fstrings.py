@@ -29,6 +29,10 @@ for n in range(1, 5):
 date1 = "{:%Y-%m-%d %H:%M}".format(datetime(2016, 7, 26, 3, 57))
 print(date1)
 
+birthday = datetime(1990, 1, 3)
+sentence3 = f'Jenn has a birthday on {birthday:%B %d, %Y}'
+print(sentence3)
+
 # %%
 #  f string formatting 2
 str1 = "{:*<15}".format('Algun texto')  # Algun texto****
