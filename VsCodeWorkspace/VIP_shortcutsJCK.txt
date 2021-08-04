@@ -11,3 +11,4 @@ EMMET
 CMD+SHIFT+V = HTML preview
 git config --global --list in TERMINAL lists configuration of your Git Repo
 git reset --hard HEAD~1  = Deshacer el último commit (no publicado) y vas retrotrayendo tu Repo de a un commit
+OPTION+Z = Wrap Text
