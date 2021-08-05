@@ -10,8 +10,17 @@ df_Right = pd.read_csv(data2)
 
 result1 = df_Left.merge(df_Right, indicator=True,
                         how='outer')
+
 result2 = df_Left.merge(df_Right, indicator=True,
                         how='outer').loc[lambda v: v['_merge'] != 'both']
+# EJEMPLO =   loc[lambda x : x['_merge']=='left_only']
+# loc accepts (among other things) a one-argument callable that is called on each row.
+# The callable is expected to return something that can be used as an index (in this case, a boolean).
+# Effectively, this syntax means "for each row x in the merged dataframes, call the lambda on the row and select it if
+# x['_merge'] == 'left_only'.
+# es decir lambda x: devuelve x == true o x == false depende de si el contenido del campo '_merge' para esa fila es == 'left_only' o no
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
+
 
 result3 = df_Left.merge(df_Right, indicator=True,
                         how='outer').loc[lambda v: v['_merge'] == 'both']
