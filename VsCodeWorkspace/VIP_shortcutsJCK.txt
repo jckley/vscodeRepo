@@ -10,5 +10,5 @@ To search for a key combination " key1 key2..." in Keyboard Shortcuts
 EMMET 
 CMD+SHIFT+V = HTML preview
 git config --global --list in TERMINAL lists configuration of your Git Repo
-git reset --hard HEAD~1  = Deshacer el último commit (no publicado) y vas retrotrayendo tu Repo de a un commit
+git reset --hard HEAD~1  = Deshacer el último commit (no publicado) y vas retrotrayendo tu Repo de a 1 commit
 OPTION+Z = Wrap Text
