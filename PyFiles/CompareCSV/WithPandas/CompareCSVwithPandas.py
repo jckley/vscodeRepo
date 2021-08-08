@@ -1,18 +1,18 @@
 import pandas as pd
 
-csv_FilesPath = '/Users/juancarloskleylein/Downloads/AWS_CSV/'
-data1 = csv_FilesPath + 'Data1.csv'
-data2 = csv_FilesPath + 'Data2.csv'
+csv_FilesPath = '/Users/juancarloskleylein/Downloads/Pulso2021/T2/Check/'
+data1 = csv_FilesPath + 'T1_combined_csv.csv'
+data2 = csv_FilesPath + 'T2_combined_csv.csv'
 
-df_Left = pd.read_csv(data1)
-df_Right = pd.read_csv(data2)
+df_Left = pd.read_csv(data1, low_memory=False)
+df_Right = pd.read_csv(data2, low_memory=False)
 
 
-result1 = df_Left.merge(df_Right, indicator=True,
-                        how='outer')
+# result1 = df_Left.merge(df_Right, indicator=True,
+#                        how='outer')
 
-result2 = df_Left.merge(df_Right, indicator=True,
-                        how='outer').loc[lambda v: v['_merge'] != 'both']
+# result2 = df_Left.merge(df_Right, indicator=True,
+#                        how='outer').loc[lambda v: v['_merge'] != 'both']
 # EJEMPLO =   loc[lambda x : x['_merge']=='left_only']
 # loc accepts (among other things) a one-argument callable that is called on each row.
 # The callable is expected to return something that can be used as an index (in this case, a boolean).
@@ -31,7 +31,7 @@ print(f" CANTIDAD REGISTROS LEFT_DF = {number_of_rowsLeft}")
 number_of_rowsRight = len(indexRight)
 print(f" CANTIDAD REGISTROS RIGHT_DF = {number_of_rowsRight}")
 
-print("----------------------------------------------------------")
+""" print("----------------------------------------------------------")
 index1 = result1.index
 number_of_rows1 = len(index1)
 print(f" CANTIDAD REGISTROS = {number_of_rows1}")
@@ -41,7 +41,8 @@ print("----------------------------------------------------------")
 index2 = result2.index
 number_of_rows2 = len(index2)
 print(f" CANTIDAD REGISTROS = {number_of_rows2}")
-print(f"************OUTER JOIN - LEFT+RIGHT = ********** \n {result2}")
+print(f"************OUTER JOIN - LEFT+RIGHT = ********** \n {result2}") """
+
 print("----------------------------------------------------------")
 index3 = result3.index
 number_of_rows3 = len(index3)
