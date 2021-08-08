@@ -1,3 +1,8 @@
+# https://realpython.com/pandas-merge-join-and-concat/
+# https://www.youtube.com/watch?v=6FXQJ-aK5MU
+
+#  USING PANDAS.MERGE
+
 import pandas as pd
 
 csv_FilesPath = '/Users/juancarloskleylein/Downloads/Pulso2021/T2/Check/'
@@ -22,8 +27,10 @@ df_Right = pd.read_csv(data2, low_memory=False)
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 
 
-result3 = df_Left.merge(df_Right, indicator=True,
-                        how='outer').loc[lambda v: v['_merge'] == 'both']
+# since no "on= Key_field"  is defined, then columns from the two DataFrames that share names will be used as join keys.
+# result3 = df_Left.merge(df_Right, indicator=True,how='outer').loc[lambda v: v['_merge'] == 'both']
+result3 = df_Left.merge(df_Right, indicator=True, how='inner', on=[
+                        'Id']).loc[lambda v: v['_merge'] == 'both']
 
 indexLeft, indexRight = df_Left.index, df_Right.index
 number_of_rowsLeft = len(indexLeft)
