@@ -5,9 +5,9 @@
 
 import pandas as pd
 
-csv_FilesPath = '/Users/juancarloskleylein/Downloads/Pulso2021/T2/Check/'
-data1 = csv_FilesPath + 'T1_combined_csv.csv'
-data2 = csv_FilesPath + 'T2_combined_csv.csv'
+csv_FilesPath = '/Users/juancarloskleylein/Downloads/'
+data1 = csv_FilesPath + 'T21.csv'
+data2 = csv_FilesPath + 'T22.csv'
 
 df_Left = pd.read_csv(data1, low_memory=False)
 df_Right = pd.read_csv(data2, low_memory=False)
@@ -30,7 +30,7 @@ df_Right = pd.read_csv(data2, low_memory=False)
 # since no "on= Key_field"  is defined, then columns from the two DataFrames that share names will be used as join keys.
 # result3 = df_Left.merge(df_Right, indicator=True,how='outer').loc[lambda v: v['_merge'] == 'both']
 result3 = df_Left.merge(df_Right, indicator=True, how='inner', on=[
-                        'Id']).loc[lambda v: v['_merge'] == 'both']
+                        'Email']).loc[lambda v: v['_merge'] == 'both']
 
 indexLeft, indexRight = df_Left.index, df_Right.index
 number_of_rowsLeft = len(indexLeft)
