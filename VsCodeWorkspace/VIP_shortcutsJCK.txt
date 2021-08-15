@@ -1,4 +1,4 @@
-CMD + arrow up   - go top of the file
+CMD + arrow up  - go top of the file
 CMD + arrow down - go bottom
 CMD + arrow left - go to beginning of line
 CMD + arrow right - go to end of line
@@ -12,3 +12,4 @@ CMD+SHIFT+V = HTML preview
 git config --global --list in TERMINAL lists configuration of your Git Repo
 git reset --hard HEAD~1  = Deshacer el último commit (no publicado) y vas retrotrayendo tu Repo de a 1 commit
 OPTION+Z = Wrap Text
+Command + / = insert a comment
