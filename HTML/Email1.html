@@ -2,33 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style type="text/css">
+        a {
+            color: #197530;
+        }
+
+        #paragraph1 {
+            color: #5f99c0;
+            background-color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    </style>
 </head>
 
 <body>
-    <style type="text/css">
-        a {
-            color: #2d1975;
-        }
-    </style><span style="font-size:25px;"><a
-            href="%%=Concat(CloudPagesUrl(3465,'e',emailaddr,'s',_subscriberkey,'f','4'))=%%">
+    <p id="paragraph1"> Aca va el Texto del Email Prueba</p>
+    <span style="font-size: 25px"><a href="%%=Concat(CloudPagesUrl(3465,'e',emailaddr,'s',_subscriberkey,'f','4'))=%%">
             <span>Cancelar Subscripcion</span></a></span>
     <table border="0" cellpadding="2" cellspacing="0" id="Table5" width="100%">
-
         <tr>
             <td>
-                <span style="color:#ffffff;"><span style="font-size:25px;"> <! ––  Override del color del CSS -->
-                        <font face="verdana">This email was sent by: <b>Pulso</b><br>
-                            Buenos Aires, Argentina</font>&nbsp;
-                    </span></span>
+                <span style="color: #da3ec5; font-size: 25px">
+                    <!-- Override color -->
+                    <font face="verdana">This email was sent by: <b>Pulso</b>Buenos Aires, Argentina</font>
+                </span>
             </td>
         </tr>
     </table>
     <custom name="opencounter" type="tracking" />
-
 </body>
 
 </html>

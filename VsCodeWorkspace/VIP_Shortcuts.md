@@ -1,6 +1,6 @@
-<ol style="font-size:12px;">
+<ol style="font-size:12px;" >
 <li> MAC open Character viewer = <span style="color: red;"><b>CTRL+CMD+SPACE</b></span></li>
-<li> Insert a comment = <span style="color: red;"><b>CMD + / </b></span></li>
+<li> Comment/ Uncomment = <span style="color: red;"><b>CMD + K + U </b></span></li>
 <li> Go top of the file = <span style="color: red;"><b>CMD + ↑ </b></span></li>
 <li> Go to beginning of line = <span style="color: red;"><b>CMD + ← </b></span></li>
 <li> Go to end of line = <span style="color: red;"><b>CMD + → </b></span></li>
