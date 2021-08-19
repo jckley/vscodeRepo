@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.55.1" platform="mac">
+	<Servers>
+		<Server>
+			<Host>s3.amazonaws.com</Host>
+			<Port>443</Port>
+			<Protocol>7</Protocol>
+			<User>AKIA2DYIXMQCUWJZWR7L</User>
+			<Pass encoding="base64">UFRPYkJjNTNvTjdxR2dQTnR5bnhEY2gyc1JxcVhDdVJ0ZVF6VXdKNw==</Pass>
+			<Logontype>1</Logontype>
+			<BypassProxy>0</BypassProxy>
+			<Name>rekognition-analysis-bucket</Name>
+			<RemoteDir>1 0 27 rekognition-analysis-bucket</RemoteDir>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>
