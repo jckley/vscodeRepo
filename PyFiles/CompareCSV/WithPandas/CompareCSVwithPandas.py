@@ -4,10 +4,13 @@
 #  USING PANDAS.MERGE
 
 import pandas as pd
+import pprint
+# from tabulate import tabulate
 
-csv_FilesPath = '/Users/juancarloskleylein/Downloads/'
-data1 = csv_FilesPath + 'T21.csv'
-data2 = csv_FilesPath + 'T22.csv'
+
+csv_FilesPath = '/Users/juancarloskleylein/Downloads/CompareCSV/'
+data1 = csv_FilesPath + 'Left.csv'
+data2 = csv_FilesPath + 'Right.csv'
 
 df_Left = pd.read_csv(data1, low_memory=False)
 df_Right = pd.read_csv(data2, low_memory=False)
@@ -29,8 +32,13 @@ df_Right = pd.read_csv(data2, low_memory=False)
 
 # since no "on= Key_field"  is defined, then columns from the two DataFrames that share names will be used as join keys.
 # result3 = df_Left.merge(df_Right, indicator=True,how='outer').loc[lambda v: v['_merge'] == 'both']
-result3 = df_Left.merge(df_Right, indicator=True, how='inner', on=[
-                        'Email']).loc[lambda v: v['_merge'] == 'both']
+
+#result3 = df_Left.merge(df_Right, indicator=True, how='inner', on=['Email']).loc[lambda v: v['_merge'] == 'both']
+
+result3 = df_Left.merge(df_Right, indicator=True, how='inner',
+                        left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
+result4 = df_Left.merge(df_Right, indicator=True, how='outer',
+                        left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
 
 indexLeft, indexRight = df_Left.index, df_Right.index
 number_of_rowsLeft = len(indexLeft)
@@ -53,5 +61,10 @@ print(f"************OUTER JOIN - LEFT+RIGHT = ********** \n {result2}") """
 print("----------------------------------------------------------")
 index3 = result3.index
 number_of_rows3 = len(index3)
+# display.max_rows and display.max_columns  ---> Sets the display of rows and columns of a dafaframe
+pd.set_option("max_columns", 10)
+
 print(f" CANTIDAD REGISTROS = {number_of_rows3}")
 print(f"************OUTER JOIN - ONLY INNER MATCHED = ********** \n {result3}")
+# print(tabulate(result3))
+# print(f"************OUTER JOIN - LEFT+RIGHT = ********** \n {result4}")
