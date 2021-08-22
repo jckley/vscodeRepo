@@ -6,11 +6,14 @@
 import pandas as pd
 import pprint
 from tabulate import tabulate
+left_CSV = input("Left CSV name ? (without extension) = ")
+right_CSV = input("Right CSV name ? (without extension)= ")
+output_CSV = input("Output CSV name ? (without extension)= ")
 
 
 csv_FilesPath = '/Users/juancarloskleylein/Downloads/CompareCSV/'
-data1 = csv_FilesPath + 'Left.csv'
-data2 = csv_FilesPath + 'Right.csv'
+data1 = csv_FilesPath + left_CSV + '.csv'
+data2 = csv_FilesPath + right_CSV + '.csv'
 
 df_Left = pd.read_csv(data1, low_memory=False)
 df_Right = pd.read_csv(data2, low_memory=False)
@@ -21,6 +24,8 @@ df_Right = pd.read_csv(data2, low_memory=False)
 
 # result2 = df_Left.merge(df_Right, indicator=True,
 #                        how='outer').loc[lambda v: v['_merge'] != 'both']
+
+# PYTHON LOC
 # EJEMPLO =   loc[lambda x : x['_merge']=='left_only']
 # loc accepts (among other things) a one-argument callable that is called on each row.
 # The callable is expected to return something that can be used as an index (in this case, a boolean).
@@ -28,17 +33,16 @@ df_Right = pd.read_csv(data2, low_memory=False)
 # x['_merge'] == 'left_only'.
 # es decir lambda x: devuelve x == true o x == false depende de si el contenido del campo '_merge' para esa fila es == 'left_only' o no
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
-
-
 # since no "on= Key_field"  is defined, then columns from the two DataFrames that share names will be used as join keys.
 # result3 = df_Left.merge(df_Right, indicator=True,how='outer').loc[lambda v: v['_merge'] == 'both']
+
 
 #result3 = df_Left.merge(df_Right, indicator=True, how='inner', on=['Email']).loc[lambda v: v['_merge'] == 'both']
 
 result3 = df_Left.merge(df_Right, indicator=True, how='inner',
                         left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
-result4 = df_Left.merge(df_Right, indicator=True, how='outer',
-                        left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
+# result4 = df_Left.merge(df_Right, indicator=True, how='outer',
+#                      left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
 
 indexLeft, indexRight = df_Left.index, df_Right.index
 number_of_rowsLeft = len(indexLeft)
@@ -68,4 +72,8 @@ print(f" CANTIDAD REGISTROS = {number_of_rows3}")
 # print(f"************OUTER JOIN - ONLY INNER MATCHED = ********** \n {result3}")
 print(f"************OUTER JOIN - ONLY INNER MATCHED = ********** \n")
 print(tabulate(result3, headers="keys"))
+result3.to_csv(output_CSV,
+               index=False, encoding='utf-8-sig')
+
+
 # print(f"************OUTER JOIN - LEFT+RIGHT = ********** \n {result4}")
