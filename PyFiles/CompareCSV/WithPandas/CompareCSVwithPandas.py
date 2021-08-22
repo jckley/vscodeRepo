@@ -5,7 +5,7 @@
 
 import pandas as pd
 import pprint
-# from tabulate import tabulate
+from tabulate import tabulate
 
 
 csv_FilesPath = '/Users/juancarloskleylein/Downloads/CompareCSV/'
@@ -65,6 +65,7 @@ number_of_rows3 = len(index3)
 pd.set_option("max_columns", 10)
 
 print(f" CANTIDAD REGISTROS = {number_of_rows3}")
-print(f"************OUTER JOIN - ONLY INNER MATCHED = ********** \n {result3}")
-# print(tabulate(result3))
+# print(f"************OUTER JOIN - ONLY INNER MATCHED = ********** \n {result3}")
+print(f"************OUTER JOIN - ONLY INNER MATCHED = ********** \n")
+print(tabulate(result3, headers="keys"))
 # print(f"************OUTER JOIN - LEFT+RIGHT = ********** \n {result4}")
