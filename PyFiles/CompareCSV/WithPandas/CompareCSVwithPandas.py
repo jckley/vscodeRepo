@@ -41,8 +41,7 @@ df_Right = pd.read_csv(data2, low_memory=False)
 
 result3 = df_Left.merge(df_Right, indicator=True, how='inner',
                         left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
-# result4 = df_Left.merge(df_Right, indicator=True, how='outer',
-#                      left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
+# result4 = df_Left.merge(df_Right, indicator=True, how='outer', left_on='Email Address', right_on='Email').loc[lambda v: v['_merge'] == 'both']
 
 indexLeft, indexRight = df_Left.index, df_Right.index
 number_of_rowsLeft = len(indexLeft)

@@ -11,6 +11,7 @@
     }
   ],
   "settings": {
-    "files.autoSave": "onFocusChange"
+    "files.autoSave": "onFocusChange",
+    "editor.wordWrapColumn": 180
   }
 }
