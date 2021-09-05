@@ -1,9 +1,10 @@
 import pandas as pd
 
-input_CSV = input("Input CSV name ? (without extension) = ")
+input_CSV = input("Input CSV name with path = ")
 
-csv_FilesPath = "/Users/juancarloskleylein/Downloads/"
-data1 = csv_FilesPath + input_CSV + ".csv"
+# csv_FilesPath = "/Users/juancarloskleylein/Downloads/"
+csv_FilesPath = ""
+data1 = csv_FilesPath + input_CSV
 
 
 df_data1 = pd.read_csv(data1, low_memory=False)
