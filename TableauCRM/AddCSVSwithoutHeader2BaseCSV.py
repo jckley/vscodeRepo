@@ -1,11 +1,8 @@
 # _________________________________________________________________________________________________________________________________
-# _________________________________________________________________________________________________________________________________
-# Reads an Einstein Analytics JSON file containing Field Labels and Null Token and adds the Lables as Headers in the JSON order.
-# Then adds N headerless CSV Files comprising the above mentioned fields
+# Reads a first CSV with Headers and appends N headerless CSV Files with records with same fields in the same order
 
-# EXECUTE = python EARecipeConvert2CSV.py  inputjsonfile inputcsvfile N
+# EXECUTE = python EARecipeConvert2CSV.py  inputcsvfile N
 # (inputcsvfile = nombre del csv sin indice - sin el "_n" y sin file format extension ;
-# inputjsonfile = idem sin extension,
 # "N" ultimo numero de archivo a concatenar 1...N)
 
 # VIP =
@@ -19,6 +16,7 @@
 import json
 import re
 import sys
+import csv
 from pathlib import Path
 
 in_json = sys.argv[1] + ".json"
