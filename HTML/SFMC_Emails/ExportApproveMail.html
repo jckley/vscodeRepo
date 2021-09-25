@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Estimado {!User.FirstName} <br />
+
+    El usuario <b>{!Export__c.CreatedBy}</b> ha solicitado el siquiente export :
+
+    <table>
+        <tr>
+            <td>Tipo</td>
+            <td><b>{!Export__c.Type__c}</b></td>
+        </tr>
+        <tr>
+            <td>SAQL</td>
+            <td><b>{!Export__c.SAQL__c}</b></td>
+        </tr>
+        <tr>
+            <td>Encuesta</td>
+            <td><b>{!Export__c.Survey__c}</b></td>
+        </tr>
+        <tr>
+            <td>DataExtension</td>
+            <td><b>{!Export__c.Data_Extension__c}</b></td>
+        </tr>
+        <tr>
+            <td>Cantidad de registros</td>
+            <td><b>{!Export__c.Record_Count__c}</b></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a
+                    href="https://prosumiacrm.secure.force.com/cdn/services/apexrest/exports/req/{!Export__c.Id}/approve"><span
+                        style="  background-color: #4CAF50;border: none;color: white;padding: 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px; margin: 4px 2px;background-color: green;border-radius: 8px;">APROBAR</span></a>
+                <a style="  background-color: #4CAF50;border: none;color: white;padding: 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px; margin: 4px 2px;background-color: red;border-radius: 8px;"
+                    href="https://prosumiacrm.secure.force.com/cdn/services/apexrest/exports/req/{!Export__c.Id}/reject">RECHAZAR</a>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
