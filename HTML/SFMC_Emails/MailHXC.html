@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <title>Dónde Voto
+    </title>
+    %%[
+    var @varFullname
+    var @varSchool
+    var @varAddress
+    var @varCity
+    var @varTable
+    set @varFullname = AttributeValue("fullname")
+    set @varSchool = AttributeValue("school")
+    set @varAddress = AttributeValue("address")
+    set @varCity = AttributeValue("city")
+    set @varTable = AttributeValue("table")
+    set @varOrder = AttributeValue("order")
+    ]%%
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            outline: none;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .main {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            .main td {
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .onlyweb {
+                visibility: hidden;
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body style="background:#f8f8f9;">
+    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#f8f8f9"
+        style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;" width="100%">
+        <tr>
+            <td width="100%" align="center">
+                <table cellpadding="0" cellspacing="0" border="0" width="600" class="main"
+                    style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;" align="center">
+                    <tr>
+                        <td width="100%" height="40" align="center">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" align="center">
+                            <a href=" https://dondevoto.hacemosporcordoba.com.ar"
+                                style="text-align: center;width:100%;"><img
+                                    src="https://image.socialcitizencrm.com/lib/fe4415707564057c7d1470/m/1/logohxc.png"
+                                    width="300px" alt="Logo" /></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" height="10" align="center">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" align="center" bgcolor="#FFF">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                                style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;" align="center">
+                                <tr class="onlyweb">
+                                    <td height="10">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="8%">&nbsp;
+                                    </td>
+                                    <td style="font-size:25px;color:#005aab;font-weight:600;text-align:center;"
+                                        width="84%">
+                                        <div style="font-size:16px;color:#666;font-weight:normal;text-transform: uppercase;"
+                                            width="84%">
+                                            <p style="font-size:16px;color:#666;text-transform: uppercase;">
+                                                &nbsp;
+                                            </p>
+                                        </div>
+                                        <h3 style="font-size:25px;color:#005aab;font-weight:600;">
+                                            USTED VOTA EN:
+                                        </h3>
+                                    </td>
+                                    <td width="8%">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr class="onlyweb">
+                                    <td colspan="3">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="8%" class="onlyweb">
+                                    </td>
+                                    <td style="font-size:16px;color:#666;text-transform: uppercase;" width="84%">
+                                        <span style="font-size:16px;color:#666;text-transform: uppercase;">escuela:
+                                        </span>
+                                    </td>
+                                    <td width="8%" class="onlyweb">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr class="onlyweb">
+                                    <td colspan="3">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="8%">
+                                    </td>
+                                    <td style="font-size:28px;color:#333;font-weight:600;" width="84%">
+                                        <h4 style="font-size:28px;color:#333;font-weight:600;">%%=v(@varSchool)=%%
+                                        </h4>
+                                    </td>
+                                    <td width="8%">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr class="onlyweb">
+                                    <td colspan="3">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="8%">
+                                    </td>
+                                    <td style="font-size:25px;color:#333;font-weight:400;" width="84%">
+                                        <span style="font-size:25px;color:#333;font-weight:400;">%%=v(@varAddress)=%%,
+                                            %%=v(@varCity)=%%
+                                        </span>
+                                    </td>
+                                    <td width="8%">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr class="onlyweb">
+                                    <td colspan="3">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="8%" class="onlyweb">
+                                    </td>
+                                    <td style="font-size:16px;color:#666;text-transform: uppercase;" width="84%">
+                                        <span style="font-size:16px;color:#666;text-transform: uppercase;">Mesa:
+                                        </span>
+                                    </td>
+                                    <td width="8%" class="onlyweb">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr class="onlyweb">
+                                    <td colspan="3">&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="8%">
+                                    </td>
+                                    <td style="font-size:25px;color:#333;font-weight:400;" width="84%">
+                                        <span style="font-size:25px;color:#333;font-weight:400;">%%=v(@varTable)=%%
+                                        </span>
+                                    </td>
+                                    <td width="8%">&nbsp;
+                                    </td>
+                                </tr>
+                    </tr>
+                    <tr class="onlyweb">
+                        <td colspan="3">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="8%" class="onlyweb">
+                        </td>
+                        <td style="font-size:16px;color:#666;text-transform: uppercase;" width="84%">
+                            <span style="font-size:16px;color:#666;text-transform: uppercase;">Orden:
+                            </span>
+                        </td>
+                        <td width="8%" class="onlyweb">&nbsp;
+                        </td>
+                    </tr>
+                    <tr class="onlyweb">
+                        <td colspan="3">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="8%">
+                        </td>
+                        <td style="font-size:25px;color:#333;font-weight:400;" width="84%">
+                            <span style="font-size:25px;color:#333;font-weight:400;">%%=v(@varOrder)=%%
+                            </span>
+                        </td>
+                        <td width="8%">&nbsp;
+                        </td>
+                    </tr>
+                    <tr class="onlyweb">
+                        <td colspan="3">&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <div style="padding-top:8px;margin:0 auto;text-align:center;font-size:25px;color:#333;font-weight:400;">
+                    Compartir con tus amigos
+                </div>
+                <div style="margin:0 auto;text-align:center; padding-top:30px">
+                    <a href="https://www.facebook.com/HacemosPorCordoba/" style="text-align: center;width:33%;"><img
+                            src="https://image.socialcitizencrm.com/lib/fe4415707564057c7d1470/m/1/d7b10b9a-d5f0-47ca-ba53-cb7d7a0d527a.png"
+                            width="10%" alt="Logo" /></a>
+                    <a href="https://twitter.com/hacemosCba"
+                        style="text-align: center;width:100%; padding-right:15px; padding-left:15px"><img
+                            src="https://image.socialcitizencrm.com/lib/fe4415707564057c7d1470/m/1/6ef4e438-fa7e-4527-ad48-a22a6deffc0a.png"
+                            width="10%" alt="Logo" /></a>
+                    <a href="https://api.whatsapp.com/send?text=El%2012%2F9%20votamos%20en%20C%C3%B3rdoba.%20Consulta%20en%20https%3A%2F%2Fdondevoto.hacemosporcordoba.com.ar"
+                        style="text-align: center;width:33%;"><img
+                            src="https://image.socialcitizencrm.com/lib/fe4415707564057c7d1470/m/1/a6526dfb-6471-4102-97e9-13ba7adfdb30.png"
+                            width="10%" alt="Logo" /></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </td>
+    </tr>
+    </table>
+    <custom name="opencounter" type="tracking" />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="text-align: center;">
+        <style type="text/css">
+            a {
+                color: #F8F8F9;
+            }
+
+            p {
+                color: #6C757D;
+            }
+        </style>
+        <p>
+            <span style="font-size:8px;"> || © 2021 - Este Email fue enviado por :<b>Hacemos por Córdoba</b>, Córdoba ,
+                Argentina.</span>
+        </p>
+    </div>
+</body>
+
+</html>
