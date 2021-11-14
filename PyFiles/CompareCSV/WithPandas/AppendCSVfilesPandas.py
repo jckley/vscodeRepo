@@ -16,11 +16,16 @@ os.chdir("/Users/juancarloskleylein/Downloads/CombineCSVs/")
 # find all csv files in the folder
 # use glob pattern matching -> extension = 'csv'
 # save result in list -> all_filenames
+# assumes all csvs have the same columns and header names
 extension = "csv"
 all_filenames = [i for i in glob.glob("*.{}".format(extension))]
 print(all_filenames)
 # Specify the fields to be read
-col_list = ["Id", "First Name", "Email"]
+# col_list = ["Id", "First Name", "Email"]
+col_list = pd.read_csv(
+    all_filenames[0], nrows=1
+).columns  # reads the headers of the first CSV
+print(col_list)
 # combine all files in the list - specified fields must be in each csv
 combined_csv = pd.concat([pd.read_csv(f, usecols=col_list) for f in all_filenames])
 # export to csv
