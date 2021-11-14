@@ -11,7 +11,7 @@ import glob
 import pandas as pd
 
 # set working directory
-os.chdir("/Users/juancarloskleylein/Downloads/Pulso2021/T1yT2Enviados/")
+os.chdir("/Users/juancarloskleylein/Downloads/CombineCSVs/")
 
 # find all csv files in the folder
 # use glob pattern matching -> extension = 'csv'
@@ -24,4 +24,4 @@ col_list = ["Id", "First Name", "Email"]
 # combine all files in the list - specified fields must be in each csv
 combined_csv = pd.concat([pd.read_csv(f, usecols=col_list) for f in all_filenames])
 # export to csv
-combined_csv.to_csv("T1yT2_combined_csv.csv", index=False, encoding="utf-8-sig")
+combined_csv.to_csv("OUTPUT_Combined_csv.csv", index=False, encoding="utf-8-sig")
