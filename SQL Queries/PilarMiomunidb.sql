@@ -1,0 +1,5 @@
+select *, CONVERT(DATE, DATEADD(DAY,0, CONVERT(DATE, CONVERT(VARCHAR(10),  DATEADD(HOUR, -3,CONVERT(DATETIME, GETDATE(), 101)), 101), 101))) as 
+'GetDateTime', CONVERT(DATE, CONVERT(VARCHAR(10), t.CreatedDate, 101), 101) as 'ConvertCreatedDate', DATEADD(HOUR, -3,CONVERT(DATETIME, GETDATE(), 101)) as 'QueryTime'
+
+from Ciudadanos_Actividades AS t WITH (NOLOCK)
+where (t.pilar360Id IS NOT NULL) AND (CONVERT(DATE, CONVERT(VARCHAR(10), t.CreatedDate, 101), 101) = '2021/12/14' )
