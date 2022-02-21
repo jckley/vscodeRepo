@@ -1,0 +1,6 @@
+// Query with Relations and Aggregates in narwal Dreamhouse app
+
+SELECT  Broker__r.Name,  SUM(Price__c)  TotalPrice
+FROM Property__c
+WHERE Status__c = 'Available'
+GROUP BY Broker__r.Name
