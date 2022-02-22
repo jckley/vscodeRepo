@@ -1,0 +1,3 @@
+SELECT Id, Name, Age_f_x__c, Territorio_Administrativo__c
+  FROM Contact
+  WHERE Document_Number__c = '17030258'
