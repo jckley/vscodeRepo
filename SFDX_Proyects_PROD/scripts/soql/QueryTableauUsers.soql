@@ -1,0 +1,1 @@
+SELECT Id,Assignee.Name,PermissionSetLicenseId FROM PermissionSetLicenseAssign WHERE PermissionSetLicenseId = '0PL6A000000VuISWA0'
