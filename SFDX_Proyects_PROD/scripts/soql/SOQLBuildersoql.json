@@ -1,0 +1,16 @@
+[
+  {
+    "Id": "0036A000006i3o3QAA",
+    "Name": "Juan Carlos Manuel Kleylein",
+    "Age_f_x__c": 57,
+    "Territorio_Administrativo__c": "a2L6A000000EIknUAG",
+    "Territorio_Administrativo__r": {
+      "attributes": {
+        "type": "Territorio_Administrativo__c",
+        "url": "/services/data/v54.0/sobjects/Territorio_Administrativo__c/a2L6A000000EIknUAG"
+      },
+      "Name": "San Isidro",
+      "Location_UUID__c": "ARG248539539"
+    }
+  }
+]
