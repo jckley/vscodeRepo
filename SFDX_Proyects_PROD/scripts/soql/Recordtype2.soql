@@ -1,0 +1,4 @@
+SELECT RecordTypeId, RecordType.Name
+  FROM Territorio_Administrativo__c
+   WHERE RecordType.Name = 'Chile'
+ 

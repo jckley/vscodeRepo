@@ -1,0 +1,3 @@
+SELECT Id, covid_vacc_desc__c
+  FROM Contact
+  WHERE Document_Number__c = '17030258'

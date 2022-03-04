@@ -1,0 +1,12 @@
+SELECT 
+    Id,
+    Name,
+    Territorio_Administrativo__r.Id,
+    Territorio_Administrativo__r.Name,
+    Territorio_Administrativo__r.Nivel_Administrativo__c,
+    Territorio_Administrativo__r.Location_UUID__c,
+    Territorio_Administrativo__r.ParentId__r.Name
+FROM Contact
+WHERE Territorio_Administrativo__r.Id ='a2L6A000000ETtyUAG'
+
+WHERE RecordType.Name = 'Chileno'
