@@ -1,20 +1,21 @@
 <!doctype html>
 <html>
+
 <head>
-  <title>{{title}}</title>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>{{title}}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <style>
         @import url(../style.css);
 
         #zoomcontrol {
             background-color: rgba(0, 0, 0, 0.5);
-            bottom:           5px;
-            left:             5px;
-            position:         absolute;
-            overflow:         hidden;
-            padding:          5px 10px;
-            list-style:       none;
+            bottom: 5px;
+            left: 5px;
+            position: absolute;
+            overflow: hidden;
+            padding: 5px 10px;
+            list-style: none;
             display: block;
             border-radius: 25px;
         }
@@ -33,7 +34,7 @@
 
         .group {
             opacity: 0.2;
-			padding: 10px;
+            padding: 10px;
         }
 
         .background {
@@ -45,25 +46,30 @@
 
         .label {
             fill: black;
-            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-size: 10px;
             text-anchor: middle;
             cursor: move;
             background-color: white;
         }
 
-        body { margin: 0;}
-        html { margin: 0;}
-        svg {margin:0;}
-
-        .svgToggleBtn img {
-         
+        body {
+            margin: 0;
         }
+
+        html {
+            margin: 0;
+        }
+
+        svg {
+            margin: 0;
+        }
+
+        .svgToggleBtn img {}
 
         button.disabled {
             color: #888888;
         }
-
     </style>
     <script type="text/javascript" src="https://argentina.my.salesforce.com/canvas/sdk/js/48.0/canvas-all.js"></script>
 
@@ -83,6 +89,7 @@
     <script src="https://d3js.org/d3-zoom.v1.min.js"></script>
 
 </head>
+
 <body>
     <div id="zoomcontrol">
         <button id="zoom_in">+</button>
@@ -91,9 +98,12 @@
         <button id="toggle_family">Familia</button>
         <button id="toggle_coworkers">Trabajo</button>
         <button id="toggle_building">Edificio</button>
-        
-         <button id="fullscreen" onclick='fullScreen(document.getElementsByTagName("html")[0]);'>Pantalla Completa</button>
+
+        <button id="fullscreen" onclick='fullScreen(document.getElementsByTagName("html")[0]);'>Pantalla
+            Completa</button>
     </div>
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
+    <!-- https://stackoverflow.com/questions/53383602/what-is-block-content-and-endblock-content-for-in-django -->
 </body>
+
 </html>
