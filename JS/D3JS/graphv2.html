@@ -1,0 +1,408 @@
+<!-- graph.html -->
+{% extends 'layout.html' %}
+{% block content %}
+<script>
+
+    function adjNodes(node, nodeByID, links){
+        result = []
+        links.forEach(function(l){
+            if (l.source == node.id){
+                result.push(nodeByID[l.target]);
+            }
+            if (l.target == node.id){
+                result.push(nodeByID[l.source]);
+            }
+        })
+        return result;
+    }
+
+    function mark_effective_group(node, nodeByID, links){
+        adjNodes(node, nodeByID, links).forEach(function(n){
+            if (!n.effectiveGroup){
+                n.effectiveGroup = node.effectiveGroup;
+                mark_effective_group(n, nodeByID, links);
+            }
+        });
+    }
+
+    function get_color(num) {
+        if (num < 10) {
+            return ["black", "#F58345", "#3DB28B", "#0082BE", "#663399", "#F3BB49"][num - 1];
+        } else if (num < 20) {
+            return "red";
+        } else {
+            return "#ff000080";
+        }
+    }
+
+    //var cola = cola.d3adaptor(d3)
+    //    .linkDistance(300);
+
+    var force = cola.d3adaptor(d3)
+        .linkDistance(120)
+        .jaccardLinkLengths(150)
+        .avoidOverlaps(true)
+        .on("tick", tick);
+
+    var zoom = d3.zoom();
+
+    svg = d3.select("body").append("svg").style("cursor", "grab");
+
+    var layer = svg.append("g").attr("class", "everything");
+
+    var link = layer.selectAll(".link");
+    var node = layer.selectAll(".node");
+    var label = layer.selectAll(".label");
+    var edgepaths = layer.selectAll(".edgepath");
+    var store, viewgraph = { nodes: [], links: [] };
+    var typeFilterList = [];
+
+    //cola.on("tick", tick);
+
+    //sforce.one.navigateToSObject("0036A000006wxm0QAA"); 
+    d3.json("{{ url_for('graphjsonv2wids', guid=guid) }}", function (error, graph) {
+        var nodeByID = {};
+        var groupMap = {};
+
+        graph.nodes.forEach(function (v, i) {
+            var g = v.group;
+            if (g == 1) { g = 2; }
+            if (typeof groupMap[g] == 'undefined') { groupMap[g] = []; }
+            groupMap[g].push(i);
+            v.width = v.height = 20;
+        });
+
+        var groups = [];
+        for (var g in groupMap) {
+            groups.push({ id: g, leaves: groupMap[g], color: get_color(g) });
+        }
+
+        graph.nodes.forEach(function(n, i) {
+            nodeByID[n.id] = n;
+        });
+
+        // give effective group from first degree group
+        graph.nodes[0].effectiveGroup = 1;
+        adjNodes(graph.nodes[0], nodeByID, graph.links).forEach(function(n){
+            n.effectiveGroup = n.group;
+            mark_effective_group(n, nodeByID, graph.links);
+        });
+
+        graph.links.forEach(function(l) {
+            l.sourceGroup = nodeByID[l.source].effectiveGroup;
+            l.targetGroup = nodeByID[l.target].effectiveGroup;
+        });
+
+        viewgraph = graph;
+        store = JSON.parse(JSON.stringify(viewgraph));
+
+        resize();
+        update();
+    });
+
+    function update() {       
+
+        _ref = viewgraph.links;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            l = _ref[_i];
+            _ref1 = viewgraph.nodes;
+            for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            n = _ref1[_j];
+            if (l.source === n.id) {
+                l.source = n;
+            }
+            if (l.target === n.id) {
+                l.target = n;
+            }
+            }
+        }
+
+        force.nodes(viewgraph.nodes)
+            .links(viewgraph.links)
+            .start();
+
+        link = link
+            .data(viewgraph.links, function (d) { var id = d.id; return id; });
+
+        link.exit().remove();
+
+        var linkEnter = link.enter().insert("line")
+            .attr("class", "link")
+            .style("stroke-width", function (d) { return Math.sqrt(d.value); });
+        link = link.merge(linkEnter);
+
+        node = node.data(viewgraph.nodes, function (d) { return d.id; })
+        node.exit().remove();
+
+        var nodeEnter = node.enter()
+            .append("g")
+            .attr("class", "node")
+            /*.attr("r", function(d) { return d.size; })*/
+            .attr("data-nodetype", function (d, i) {
+                return d.group
+            })
+            //.style("fill", function (d, i) {
+            //    return color(d.color);
+            //})
+            .call(force.drag);
+
+        node = node.merge(nodeEnter);
+
+        d3.xml("{{ url_for('static', filename='svg/self.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(1, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/cohabitante.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(2, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/coedificio.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(3, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/cotrabajo.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(4, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/coviajero.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(5, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/familiar.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(6, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/self-c.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(11, error, documentFragment);
+                setSvgToNodeType(21, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/cohabitante-c.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(12, error, documentFragment);
+                setSvgToNodeType(22, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/coedificio-c.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(13, error, documentFragment);
+                setSvgToNodeType(23, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/cotrabajo-c.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(14, error, documentFragment);
+                setSvgToNodeType(24, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/coviajero-c.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(15, error, documentFragment);
+                setSvgToNodeType(25, error, documentFragment);
+            });
+
+        d3.xml("{{ url_for('static', filename='svg/familiar-c.svg' )}}",
+            function (error, documentFragment) {
+                setSvgToNodeType(16, error, documentFragment);
+                setSvgToNodeType(26, error, documentFragment);
+            });
+
+
+        function setSvgToNodeType(nodetype, error, documentFragment) {
+            if (error) { console.log(error); return; }
+
+            var svgNode = documentFragment
+                .getElementsByTagName("g");
+
+            for (let item of svgNode) {
+                svg.selectAll('[data-nodetype="' + nodetype + '"]').select(function () {
+                    var child = item.cloneNode(true);
+                    child = d3.select(child).attr("transform", "scale(0.5 0.5)")
+
+                    this.appendChild(child.node());
+                })
+                break;
+            }
+        }
+
+        label = label.data(viewgraph.nodes, function (d) { return d.id; })
+        label.exit().remove();
+
+        var labelEnter = label.enter().insert("text")
+            .attr("class", "label")
+            .text(function (d) {
+                return d.name;
+            })
+            .call(force.drag);
+        label = label.merge(labelEnter);
+
+        edgepaths = edgepaths.data(viewgraph.links, function (d) { var id = d.id; return id; })
+        edgepaths.exit().remove();
+
+        var edgepathsEnter = edgepaths.enter()
+            .insert('path')
+            .attrs({
+                'class': 'edgepath',
+                'fill-opacity': 0,
+                'stroke-opacity': 0,
+                'id': function (d, i) { return 'edgepath' + i }
+            })
+            .style("pointer-events", "none");
+
+        edgepaths = edgepaths.merge(edgepathsEnter);
+
+
+        nodeEnter.insert("circle")
+            .attr("r", 32)
+            .style("fill", function (d) { return get_color(d.group); })
+
+        nodeEnter.insert("title")
+            .text(function (d) { return d.name; });
+
+        node.on("click", function (d) {
+            ajax_get(build_redirect_fn(d.id), function (data) {
+                window.top.location.href = data.url;
+            })
+        });
+
+        document.getElementById('toggle_family').onclick=function(e){ this.classList.toggle("disabled"); toggle(6)};
+        document.getElementById('toggle_coworkers').onclick=function(){ this.classList.toggle("disabled");toggle(4)};
+        document.getElementById('toggle_building').onclick=function(){ this.classList.toggle("disabled");toggle(3)};
+        document.getElementById('toggle_cohabitants').onclick=function(){ this.classList.toggle("disabled");toggle(2)};
+
+
+        function toggle(id) {
+      
+            if (typeFilterList.includes(id)) {
+                typeFilterList.splice(typeFilterList.indexOf(id), 1)
+            } else {
+                typeFilterList.push(id);
+            }
+            
+            filter();
+            update();
+        };
+
+        function build_redirect_fn(sfid) {
+            return "{{ redirect_url_template }}".replace("---ID---", sfid);
+        }
+
+        d3.select(window).on("resize", resize);
+
+    }
+
+    function filter() {
+
+        //	add and remove nodes from data based on type filters
+        store.nodes.forEach(function (n) {
+            if (!typeFilterList.includes(n.effectiveGroup) && n.filtered) {
+                n.filtered = false;
+                viewgraph.nodes.push(JSON.parse(JSON.stringify(n)));
+            } else if (typeFilterList.includes(n.effectiveGroup) && !n.filtered) {
+                n.filtered = true;
+                viewgraph.nodes.forEach(function (d, i) {
+                    if (n.id === d.id) {
+                        viewgraph.nodes.splice(i, 1);
+                    }
+                });
+            }
+        });
+
+        //	add and remove links from data based on availability of nodes
+        store.links.forEach(function (l) {
+            if (!(typeFilterList.includes(l.sourceGroup) || typeFilterList.includes(l.targetGroup)) && l.filtered) {
+                l.filtered = false;
+                viewgraph.links.push(JSON.parse(JSON.stringify(l)));
+            } else if ((typeFilterList.includes(l.sourceGroup) || typeFilterList.includes(l.targetGroup)) && !l.filtered) {
+                l.filtered = true;
+                viewgraph.links.forEach(function (d, i) {
+                    if (l.id === d.id) {
+                        viewgraph.links.splice(i, 1);
+                    }
+                });
+            }
+        });
+    }
+
+
+    function tick() {
+        link.attr("x1", function (d) { return d.source.x; })
+            .attr("y1", function (d) { return d.source.y; })
+            .attr("x2", function (d) { return d.target.x; })
+            .attr("y2", function (d) { return d.target.y; });
+
+        node.select("circle")
+            .attr("cx", function (d) { return d.x; })
+            .attr("cy", function (d) { return d.y; });
+
+        node.select("g").attr("transform", function (d) {
+            var w = this.getBBox().width * .75;
+            var h = this.getBBox().height * .75;
+            return "translate(" + (d.x - w / 2) + "," + (d.y - h / 2) + ") scale (0.75 0.75)";
+        });
+
+        label.attr("x", function (d) { return d.x; })
+            .attr("y", function (d) {
+                var h = this.getBBox().height;
+                return d.y + 45;
+            });
+    }
+
+    function resize() {
+        width = window.innerWidth, height = window.innerHeight;
+
+        zoom = d3.zoom()
+            .extent([[0, 0], [width, height]])
+            .scaleExtent([0.5, 6])
+            .on("zoom", zoomed);
+
+        svg.attr("width", width).attr("height", height);
+        force.size([width, height]).resume();
+
+        svg.call(d3.zoom()
+            .extent([[0, 0], [width, height]])
+            .scaleExtent([0.5, 6])
+            .on("zoom", zoomed));
+    }
+
+    function zoomed() {
+        layer.attr("transform", d3.event.transform);
+    }
+
+    d3.select("#zoom_in").on("click", function () {
+        zoom.scaleBy(svg.transition().duration(750), 1.2);
+    });
+
+    d3.select("#zoom_out").on("click", function () {
+        zoom.scaleBy(svg.transition().duration(750), 0.8);
+    });
+
+    function ajax_get(url, callback) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+                try {
+                    var data = JSON.parse(xmlhttp.responseText);
+                } catch (err) {
+                    console.log(err.message + " in " + xmlhttp.responseText);
+                    return;
+                }
+                callback(data);
+            }
+        };
+
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlhttp.send('{{ signed_request_json | safe }}');
+    }
+
+</script>
+{% endblock %}
