@@ -1,3 +1,0 @@
-SELECT riverid_citizen__r.Name, riverid_citizen__r.Id, Name, riverid_citizen__c, riverid_citizen__r.Age_f_x__c, cat_socio__c
-  FROM RiverId__c
- WHERE cat_socio__c = 'INFANTIL'

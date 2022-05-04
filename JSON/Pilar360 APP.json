@@ -1,0 +1,624 @@
+{
+  "Pilar_Interactions": {
+    "action": "sfdcRegister",
+    "parameters": {
+      "name": "Pilar360_Actividades",
+      "alias": "Pilar360_Actividades",
+      "source": "Ingest PilarInteractions"
+    }
+  },
+  "Ingest Pilar360": {
+    "action": "sfdcDigest",
+    "parameters": {
+      "fields": [
+        {
+          "name": "Administrative_Level_1__c"
+        },
+        {
+          "name": "Administrative_Level_2__c"
+        },
+        {
+          "name": "Administrative_Level_3__c"
+        },
+        {
+          "name": "Administrative_Level_4__c"
+        },
+        {
+          "name": "Citizen__c"
+        },
+        {
+          "name": "Edad__c"
+        },
+        {
+          "name": "Email__c"
+        },
+        {
+          "name": "FirstName__c"
+        },
+        {
+          "name": "FullName__c"
+        },
+        {
+          "name": "guid__c"
+        },
+        {
+          "name": "Id"
+        },
+        {
+          "name": "LastName__c"
+        },
+        {
+          "name": "MiddleName__c"
+        },
+        {
+          "name": "Mobile_Phone__c"
+        },
+        {
+          "name": "Name"
+        },
+        {
+          "name": "Phone__c"
+        },
+        {
+          "name": "pilar_360_Ciudadano360__c"
+        },
+        {
+          "name": "pilar_360_date__c"
+        }
+      ],
+      "object": "Pilar360__c"
+    }
+  },
+  "Pilar360 register": {
+    "action": "sfdcRegister",
+    "parameters": {
+      "name": "Ciudadanos_Pilar360",
+      "alias": "Ciudadanos_Pilar360",
+      "source": "Ingest Pilar360"
+    }
+  },
+  "Ingest PilarInteractions": {
+    "action": "sfdcDigest",
+    "parameters": {
+      "fields": [
+        {
+          "name": "Birthdate__c"
+        },
+        {
+          "name": "DNI__c"
+        },
+        {
+          "name": "Fecha_Creacion_Registro__c"
+        },
+        {
+          "name": "Fecha_Ultima_Modificacion_Registro__c"
+        },
+        {
+          "name": "Id"
+        },
+        {
+          "name": "Interaction_Date__c"
+        },
+        {
+          "name": "Name"
+        },
+        {
+          "name": "Pilar360Citizen_SFID__c"
+        },
+        {
+          "name": "PilarCiudadanoID__c"
+        },
+        {
+          "name": "PilarExtDatabase_ID__c"
+        },
+        {
+          "name": "Programs__c"
+        },
+        {
+          "name": "Services__c"
+        }
+      ],
+      "object": "PilarCitizenInteractions__c"
+    }
+  },
+  "T1": {
+    "action": "edgemart",
+    "parameters": {
+      "alias": "T1pqlamz_e"
+    }
+  },
+  "KeepFieldsT1": {
+    "action": "sliceDataset",
+    "parameters": {
+      "mode": "select",
+      "fields": [
+        {
+          "name": "actividades_economicas__c"
+        },
+        {
+          "name": "Administrative_Level_0__c"
+        },
+        {
+          "name": "Administrative_Level_1__c"
+        },
+        {
+          "name": "Administrative_Level_2__c"
+        },
+        {
+          "name": "Administrative_Level_3__c"
+        },
+        {
+          "name": "Administrative_Level_4__c"
+        },
+        {
+          "name": "Audiencia_Electoral__c"
+        },
+        {
+          "name": "Audiencia_Generaciones__c"
+        },
+        {
+          "name": "Audiencia_Politica__c"
+        },
+        {
+          "name": "Beneficios_Sociales__c"
+        },
+        {
+          "name": "Birthdate"
+        },
+        {
+          "name": "civil_status__c"
+        },
+        {
+          "name": "Comorbilidades__c"
+        },
+        {
+          "name": "condicion_de_ingreso__c"
+        },
+        {
+          "name": "covid_vacc_1st_dose__c"
+        },
+        {
+          "name": "covid_vacc_2nd_dose__c"
+        },
+        {
+          "name": "covid_vacc_3rd_dose__c"
+        },
+        {
+          "name": "covid_vacc_desc__c"
+        },
+        {
+          "name": "Cuil_Number__c"
+        },
+        {
+          "name": "CUIT_Empleador_1__c"
+        },
+        {
+          "name": "CUIT_Empleador_2__c"
+        },
+        {
+          "name": "CUIT_Empleador_3__c"
+        },
+        {
+          "name": "Direccion_Completa"
+        },
+        {
+          "name": "Direccion_Completa__c"
+        },
+        {
+          "name": "Document_Number__c"
+        },
+        {
+          "name": "Edad__c"
+        },
+        {
+          "name": "Education_Level__c"
+        },
+        {
+          "name": "Email"
+        },
+        {
+          "name": "Employer_1__c"
+        },
+        {
+          "name": "Employer_2__c"
+        },
+        {
+          "name": "Employer_3__c"
+        },
+        {
+          "name": "Facebook_Link__c"
+        },
+        {
+          "name": "FirstName"
+        },
+        {
+          "name": "foreign_category__c"
+        },
+        {
+          "name": "Gender__c"
+        },
+        {
+          "name": "health_insurance__c"
+        },
+        {
+          "name": "HomePhone"
+        },
+        {
+          "name": "Id"
+        },
+        {
+          "name": "Income_Total__c"
+        },
+        {
+          "name": "Ingreso__c"
+        },
+        {
+          "name": "Instagram_Link__c"
+        },
+        {
+          "name": "jerarquia_empleo__c"
+        },
+        {
+          "name": "LastName"
+        },
+        {
+          "name": "Linkedin_Link__c"
+        },
+        {
+          "name": "MailingLatitude"
+        },
+        {
+          "name": "MailingLongitude"
+        },
+        {
+          "name": "MailingPostalCode"
+        },
+        {
+          "name": "membership_sports_club__c"
+        },
+        {
+          "name": "MiddleName"
+        },
+        {
+          "name": "MobilePhone"
+        },
+        {
+          "name": "monotax_category__c"
+        },
+        {
+          "name": "movilidad_desc__c"
+        },
+        {
+          "name": "movilidad_patente__c"
+        },
+        {
+          "name": "Movilidad__c"
+        },
+        {
+          "name": "Nacionalidad__c"
+        },
+        {
+          "name": "Name"
+        },
+        {
+          "name": "party_affiliation__c"
+        },
+        {
+          "name": "Profession__c"
+        },
+        {
+          "name": "situacion_del_asalariado__c"
+        },
+        {
+          "name": "Sueldo_1__c"
+        },
+        {
+          "name": "Sueldo_2__c"
+        },
+        {
+          "name": "Sueldo_3__c"
+        },
+        {
+          "name": "tax_is_employer__c"
+        },
+        {
+          "name": "tax_regime__c"
+        },
+        {
+          "name": "tax_simplified_category__c"
+        },
+        {
+          "name": "Telegram__c"
+        },
+        {
+          "name": "Tiene_Email__c"
+        },
+        {
+          "name": "Tiene_Facebook__c"
+        },
+        {
+          "name": "Tiene_Instagram__c"
+        },
+        {
+          "name": "Tiene_Linkedin__c"
+        },
+        {
+          "name": "Tiene_Moviles__c"
+        },
+        {
+          "name": "Tiene_Telefonos_Fijos__c"
+        },
+        {
+          "name": "Tiene_Twitter__c"
+        },
+        {
+          "name": "tipo_de_asalariado__c"
+        },
+        {
+          "name": "Tuvo_Covid19__c"
+        },
+        {
+          "name": "Twitter_Link__c"
+        },
+        {
+          "name": "Usuario_Facebook__c"
+        },
+        {
+          "name": "Usuario_Instagram__c"
+        },
+        {
+          "name": "Usuario_Linkedin__c"
+        },
+        {
+          "name": "Usuario_Twitter__c"
+        },
+        {
+          "name": "Whatsapp__c"
+        }
+      ],
+      "source": "T1"
+    }
+  },
+  "AugmentPilar360WithCitizens": {
+    "action": "augment",
+    "parameters": {
+      "operation": "LookupSingleValue",
+      "left": "Ingest Pilar360",
+      "left_key": ["Citizen__c"],
+      "relationship": "PRM",
+      "right": "KeepFieldsT1",
+      "right_key": ["Id"],
+      "right_select": [
+        "actividades_economicas__c",
+        "Administrative_Level_0__c",
+        "Administrative_Level_1__c",
+        "Administrative_Level_2__c",
+        "Administrative_Level_3__c",
+        "Administrative_Level_4__c",
+        "Audiencia_Electoral__c",
+        "Audiencia_Generaciones__c",
+        "Audiencia_Politica__c",
+        "Beneficios_Sociales__c",
+        "Birthdate",
+        "civil_status__c",
+        "Comorbilidades__c",
+        "condicion_de_ingreso__c",
+        "covid_vacc_1st_dose__c",
+        "covid_vacc_2nd_dose__c",
+        "covid_vacc_3rd_dose__c",
+        "covid_vacc_desc__c",
+        "Cuil_Number__c",
+        "CUIT_Empleador_1__c",
+        "CUIT_Empleador_2__c",
+        "CUIT_Empleador_3__c",
+        "Direccion_Completa",
+        "Direccion_Completa__c",
+        "Document_Number__c",
+        "Edad__c",
+        "Education_Level__c",
+        "Email",
+        "Employer_1__c",
+        "Employer_2__c",
+        "Employer_3__c",
+        "Facebook_Link__c",
+        "FirstName",
+        "foreign_category__c",
+        "Gender__c",
+        "health_insurance__c",
+        "HomePhone",
+        "Id",
+        "Income_Total__c",
+        "Ingreso__c",
+        "Instagram_Link__c",
+        "jerarquia_empleo__c",
+        "LastName",
+        "Linkedin_Link__c",
+        "MailingLatitude",
+        "MailingLongitude",
+        "MailingPostalCode",
+        "membership_sports_club__c",
+        "MiddleName",
+        "MobilePhone",
+        "monotax_category__c",
+        "movilidad_desc__c",
+        "movilidad_patente__c",
+        "Movilidad__c",
+        "Nacionalidad__c",
+        "Name",
+        "party_affiliation__c",
+        "Profession__c",
+        "situacion_del_asalariado__c",
+        "Sueldo_1__c",
+        "Sueldo_2__c",
+        "Sueldo_3__c",
+        "tax_is_employer__c",
+        "tax_regime__c",
+        "tax_simplified_category__c",
+        "Telegram__c",
+        "Tiene_Email__c",
+        "Tiene_Facebook__c",
+        "Tiene_Instagram__c",
+        "Tiene_Linkedin__c",
+        "Tiene_Moviles__c",
+        "Tiene_Telefonos_Fijos__c",
+        "Tiene_Twitter__c",
+        "tipo_de_asalariado__c",
+        "Tuvo_Covid19__c",
+        "Twitter_Link__c",
+        "Usuario_Facebook__c",
+        "Usuario_Instagram__c",
+        "Usuario_Linkedin__c",
+        "Usuario_Twitter__c",
+        "Whatsapp__c"
+      ]
+    }
+  },
+  "DropStage1": {
+    "action": "sliceDataset",
+    "parameters": {
+      "mode": "drop",
+      "fields": [
+        {
+          "name": "guid__c"
+        },
+        {
+          "name": "PRM.Id"
+        }
+      ],
+      "source": "AugmentPilar360WithCitizens"
+    }
+  },
+  "AugmentWithInteractions": {
+    "action": "augment",
+    "parameters": {
+      "operation": "LookupSingleValue",
+      "left": "Ingest PilarInteractions",
+      "relationship": "Interactions",
+      "right": "DropStage1",
+      "left_key": ["Pilar360Citizen_SFID__c"],
+      "right_key": ["Id"],
+      "right_select": [
+        "Administrative_Level_1__c",
+        "Administrative_Level_2__c",
+        "Administrative_Level_3__c",
+        "Administrative_Level_4__c",
+        "Citizen__c",
+        "Edad__c",
+        "Email__c",
+        "FirstName__c",
+        "FullName__c",
+        "Id",
+        "LastName__c",
+        "MiddleName__c",
+        "Mobile_Phone__c",
+        "Name",
+        "Phone__c",
+        "pilar_360_Ciudadano360__c",
+        "pilar_360_date__c",
+        "PRM.actividades_economicas__c",
+        "PRM.Administrative_Level_0__c",
+        "PRM.Administrative_Level_1__c",
+        "PRM.Administrative_Level_2__c",
+        "PRM.Administrative_Level_3__c",
+        "PRM.Administrative_Level_4__c",
+        "PRM.Audiencia_Electoral__c",
+        "PRM.Audiencia_Generaciones__c",
+        "PRM.Audiencia_Politica__c",
+        "PRM.Beneficios_Sociales__c",
+        "PRM.Birthdate",
+        "PRM.civil_status__c",
+        "PRM.Comorbilidades__c",
+        "PRM.condicion_de_ingreso__c",
+        "PRM.covid_vacc_1st_dose__c",
+        "PRM.covid_vacc_2nd_dose__c",
+        "PRM.covid_vacc_3rd_dose__c",
+        "PRM.covid_vacc_desc__c",
+        "PRM.Cuil_Number__c",
+        "PRM.CUIT_Empleador_1__c",
+        "PRM.CUIT_Empleador_2__c",
+        "PRM.CUIT_Empleador_3__c",
+        "PRM.Direccion_Completa",
+        "PRM.Direccion_Completa__c",
+        "PRM.Document_Number__c",
+        "PRM.Edad__c",
+        "PRM.Education_Level__c",
+        "PRM.Email",
+        "PRM.Employer_1__c",
+        "PRM.Employer_2__c",
+        "PRM.Employer_3__c",
+        "PRM.Facebook_Link__c",
+        "PRM.FirstName",
+        "PRM.foreign_category__c",
+        "PRM.Gender__c",
+        "PRM.health_insurance__c",
+        "PRM.HomePhone",
+        "PRM.Income_Total__c",
+        "PRM.Ingreso__c",
+        "PRM.Instagram_Link__c",
+        "PRM.jerarquia_empleo__c",
+        "PRM.LastName",
+        "PRM.Linkedin_Link__c",
+        "PRM.MailingLatitude",
+        "PRM.MailingLongitude",
+        "PRM.MailingPostalCode",
+        "PRM.membership_sports_club__c",
+        "PRM.MiddleName",
+        "PRM.MobilePhone",
+        "PRM.monotax_category__c",
+        "PRM.movilidad_desc__c",
+        "PRM.movilidad_patente__c",
+        "PRM.Movilidad__c",
+        "PRM.Nacionalidad__c",
+        "PRM.Name",
+        "PRM.party_affiliation__c",
+        "PRM.Profession__c",
+        "PRM.situacion_del_asalariado__c",
+        "PRM.Sueldo_1__c",
+        "PRM.Sueldo_2__c",
+        "PRM.Sueldo_3__c",
+        "PRM.tax_is_employer__c",
+        "PRM.tax_regime__c",
+        "PRM.tax_simplified_category__c",
+        "PRM.Telegram__c",
+        "PRM.Tiene_Email__c",
+        "PRM.Tiene_Facebook__c",
+        "PRM.Tiene_Instagram__c",
+        "PRM.Tiene_Linkedin__c",
+        "PRM.Tiene_Moviles__c",
+        "PRM.Tiene_Telefonos_Fijos__c",
+        "PRM.Tiene_Twitter__c",
+        "PRM.tipo_de_asalariado__c",
+        "PRM.Tuvo_Covid19__c",
+        "PRM.Twitter_Link__c",
+        "PRM.Usuario_Facebook__c",
+        "PRM.Usuario_Instagram__c",
+        "PRM.Usuario_Linkedin__c",
+        "PRM.Usuario_Twitter__c",
+        "PRM.Whatsapp__c"
+      ]
+    }
+  },
+  "RegisterDSMadre": {
+    "action": "sfdcRegister",
+    "parameters": {
+      "source": "DropFinal",
+      "alias": "Pilar360_Ciudadano_Interacciones",
+      "name": "Pilar360_Ciudadano_Interacciones"
+    }
+  },
+  "DropFinal": {
+    "action": "sliceDataset",
+    "parameters": {
+      "mode": "drop",
+      "fields": [
+        {
+          "name": "Name"
+        },
+        {
+          "name": "PilarExtDatabase_ID__c"
+        }
+      ],
+      "source": "AugmentWithInteractions"
+    }
+  }
+}

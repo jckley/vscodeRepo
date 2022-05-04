@@ -1,3 +1,0 @@
-SELECT RecordTypeId, RecordType.Name
-  FROM Contact
-  WHERE RecordType.Name = 'Chileno'

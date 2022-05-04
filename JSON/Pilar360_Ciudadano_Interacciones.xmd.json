@@ -1,0 +1,65 @@
+{
+  "dataset": {},
+  "dates": [],
+  "derivedDimensions": [],
+  "derivedMeasures": [],
+  "dimensions": [
+    {
+      "conditionalFormatting": {},
+      "customActions": [],
+      "field": "Interactions.Phone__c",
+      "label": "Interactions.P360_Phone__c",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": []
+    },
+    {
+      "conditionalFormatting": {},
+      "customActions": [],
+      "field": "Interactions.Mobile_Phone__c",
+      "label": "Interactions.P360_Celular",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": []
+    },
+    {
+      "conditionalFormatting": {},
+      "customActions": [],
+      "field": "Interactions.MiddleName__c",
+      "label": "P360_Segundo Nombre",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": []
+    },
+    {
+      "conditionalFormatting": {},
+      "customActions": [],
+      "field": "Programs__c",
+      "label": "Interaccion_Programas",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": []
+    },
+    {
+      "conditionalFormatting": {},
+      "customActions": [],
+      "field": "Interactions.Administrative_Level_1__c",
+      "label": "P360_Nivel_Admin_1",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": []
+    },
+    {
+      "conditionalFormatting": {},
+      "customActions": [],
+      "field": "Interactions.Administrative_Level_2__c",
+      "label": "P360_Nivel_Admin_2",
+      "members": [],
+      "recordDisplayFields": [],
+      "salesforceActions": []
+    }
+  ],
+  "measures": [],
+  "organizations": [],
+  "showDetailsDefaultFields": []
+}

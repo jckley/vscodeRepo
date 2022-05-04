@@ -1,3 +1,0 @@
-SELECT Count()
-FROM Contact
-WHERE RecordType.Name = 'Ecuatoriano' and Tiene_Moviles__c = TRUE
