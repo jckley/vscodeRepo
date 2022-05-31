@@ -1,9 +1,11 @@
+# python CheckNumberOfRows.py      y despues inputeamos el nombre del csv
+
 import pandas as pd
 
-input_CSV = input("Input CSV name with path = ")
+input_CSV = input("Input CSV name without path = ")
 
-# csv_FilesPath = "/Users/juancarloskleylein/Downloads/"
-csv_FilesPath = ""
+csv_FilesPath = "/Users/juancarloskleylein/Downloads/"
+# csv_FilesPath = ""
 data1 = csv_FilesPath + input_CSV
 
 
