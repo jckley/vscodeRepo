@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .boton {
+            border: 1px solid rgb(93, 93, 93);
+            padding: 10px;
+            background-color: gray;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-family: 'Arial', helvetica, sans-serif;
+            border-radius: 3px;
+
+        }
+
+        .img {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        p {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="img" style="text-align: center;">
+        <img src="https://image.socialcitizencrm.com/lib/fe4415707564057c7d1470/m/1/Iso-01+copy.jpeg" alt=""
+            height="10%" width="10%">
+    </div>
+    <br>
+
+
+    <p style="text-align: center;"> Estimado {{FN}} <br>
+        <br>
+
+        Te recordamos que respondas la encuesta la cual fue el pórcentaje de tu tiempo <br> trabajado en cada proyecto
+        el día {{SR}} haciendo click en el vinculo. <br>
+        <br>
+        Gracias !
+    </p>
+
+    <br>
+
+    <div>
+        <div style="text-align: center;">
+            <a class="boton" target="_blank" href="{{URL CUSTOM}}">
+                Hacé click Aquí
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
